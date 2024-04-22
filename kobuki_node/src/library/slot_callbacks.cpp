@@ -123,7 +123,7 @@ void KobukiRos::publishInertia()
       // Publish as shared pointer to leverage the nodelets' zero-copy pub/sub feature
       sensor_msgs::ImuPtr msg(new sensor_msgs::Imu);
 
-      msg->header.frame_id = "gyro_link";
+      msg->header.frame_id = "locobot/gyro_link";
       msg->header.stamp = ros::Time::now();
 
       msg->orientation = tf::createQuaternionMsgFromRollPitchYaw(0.0, 0.0, kobuki.getHeading());
@@ -164,7 +164,7 @@ void KobukiRos::publishRawInertia()
     for( unsigned int i=0; i<length; i++) {
       // Each sensor reading has id, that circulate 0 to 255.
       //msg->header.frame_id = std::string("gyro_link_" + boost::lexical_cast<std::string>((unsigned int)data.frame_id+i));
-      msg->header.frame_id = "gyro_link";
+      msg->header.frame_id = "locobot/gyro_link";
 
       // Update rate of 3d gyro sensor is 100 Hz, but robot's update rate is 50 Hz.
       // So, here is some compensation.
